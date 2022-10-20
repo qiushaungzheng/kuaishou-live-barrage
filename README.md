@@ -7,9 +7,9 @@
 
 ### 快手直播官网 - https://live.kuaishou.com/
 
-![image-20221019183527491](/Users/jarvanzheng/Desktop/myGithub/DANMU/kuaishou-live-barrage/img/image-20221019183527491.png)
+![image-20221019183527491](https://img.jarvan.cn//imgimage-20221019183527491.png)
 
-<img src="/Users/jarvanzheng/Library/Application Support/typora-user-images/image-20221019183651520.png" alt="image-20221019183651520" style="zoom:50%;" />
+<img src="https://img.jarvan.cn//imgimage-20221019183651520.png" alt="image-20221019183651520"  />
 
 ## 食用方法
 
