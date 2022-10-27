@@ -45,9 +45,18 @@ const misc2dic = (did) => {
 	}
 }
 const gotHeaders = {
-	'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
+	accept: "*/*",
+	'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
 	accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-	connection: 'keep-alive'
+	connection: 'keep-alive',
+	// Host: ' live.kuaishou.com',
+	'sec-ch-ua': `Google Chrome;v=107, Chromium;v=107, Not=A?Brand;v=24`,
+	// Referer: 'https://live.kuaishou.com',
+	'sec-ch-ua-platform': 'macOS',
+	'Sec-Fetch-Dest': 'document',
+	'Sec-Fetch-Mode': 'navigate',
+	'Sec-Fetch-Site': 'same-origin',
+	'Sec-Fetch-User': '?1'
 }
 module.exports = {
 	misc2dic,

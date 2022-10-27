@@ -2,9 +2,9 @@ const protobuf = require('protobufjs')
 const WebSocket = require('ws')
 const got = require('got')
 const { misc2dic, gotHeaders } = require('./registerJson/index')
-
 const protobufJson = require('./protobuf/k.json')
 const pbRoot = protobuf.Root.fromJSON(protobufJson)
+
 
 function rand(m, n) {
 	return Math.ceil(Math.random() * (n - m + 1) + m - 1)
@@ -21,30 +21,33 @@ class KuaishouClient {
 	}
 
 	async start() {
-		// 获取 liveStreamId
+		// get liveStreamId
 		const { liveStreamId, cookie, cookieObj, pageId } = await this.getLiveStreamId()
 
-		// 报错
+
 		if (!liveStreamId) {
 			console.log(`Error:[kuaishou-${this.roomId}] 获取直播流ID错误`)
 			return
 		}
 
+		console.log('liveStreamId', liveStreamId)
 		// 注册did
 		const registerRes = await this.registerDid(cookieObj.did)
 
-		// 报错
 		if (registerRes?.result !== 1) {
 			console.log(`Error:[kuaishou-${this.roomId}] 注册did失败`)
 			return
 		}
-
+	
 		// 获取wss链接
 		const response = await this.getWebsocketUrl(cookie, liveStreamId)
-		const { token, webSocketUrls } = response.data.webSocketInfo
 
-		console.log(token, webSocketUrls)
+		const { token, webSocketUrls = [] } = response.data.webSocketInfo
 
+		if (!(webSocketUrls && webSocketUrls[0])) {
+			console.log(`Error:[kuaishou-${this.roomId}] 获取token失败，请尝试更换网络环境`)
+			return
+		}
 		this.url = webSocketUrls[0]
 
 		const ws = (this.ws = new WebSocket(this.url))
@@ -176,16 +179,15 @@ class KuaishouClient {
 	async getLiveStreamId() {
 		let liveStreamId
 
-		const res = await got.get(this.baseUrl + this.roomId)
+		const res = await got.get(this.baseUrl + this.roomId, {
+			headers: gotHeaders
+		})
 		const setCookies = res.headers['set-cookie']
 
-		let reg = new RegExp(/\"liveStreamId\"\:(.*?)\,/, 'g')
+		let reg = new RegExp(/screenshot\/(.*?)\~/, 'g')
 
 		try {
-			liveStreamId = res.body
-				.match(reg)[0]
-				.replace(/(\')|(\")|(\,)/g, '')
-				.split(':')[1]
+			liveStreamId = res.body.match(reg)[0].replace(/\~/g, '').split('/')[1]
 		} catch (e) {
 			console.log(`Error:[kuaishou-${this.roomId}] 获取直播流ID错误`)
 		}
@@ -227,9 +229,7 @@ class KuaishouClient {
 				},
 				json: {
 					operationName: 'WebSocketInfoQuery',
-					variables: {
-						liveStreamId
-					},
+					variables: { liveStreamId: liveStreamId },
 					query: 'query WebSocketInfoQuery($liveStreamId: String) {\n  webSocketInfo(liveStreamId: $liveStreamId) {\n    token\n    webSocketUrls\n    __typename\n  }\n}\n'
 				}
 			})
@@ -239,4 +239,4 @@ class KuaishouClient {
 
 module.exports = KuaishouClient
 
-// const client = new KuaishouClient('Achen888')
+// const client = new KuaishouClient('jiutianhu')
