@@ -1,27 +1,27 @@
 {
-  "name": "kuaishou-live-barrage",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start":"node ./index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/qs007/kuaishou-live-barrage.git"
-  },
-  "keywords": [],
-  "author": "jarvanzheng",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/qs007/kuaishou-live-barrage/issues"
-  },
-  "homepage": "https://github.com/qs007/kuaishou-live-barrage#readme",
-  "dependencies": {
-    "got": "11.8",
-    "nodejs-websocket": "^1.7.2",
-    "protobufjs": "^7.1.2",
-    "ws": "^8.9.0"
-  }
+    "name": "kuaishou-live-barrage",
+    "version": "1.0.1",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node ./index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/qs007/kuaishou-live-barrage.git"
+    },
+    "keywords": [],
+    "author": "jarvanzheng",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/qs007/kuaishou-live-barrage/issues"
+    },
+    "homepage": "https://github.com/qs007/kuaishou-live-barrage#readme",
+    "dependencies": {
+        "got": "11.8",
+        "nodejs-websocket": "^1.7.2",
+        "protobufjs": "^7.1.2",
+        "ws": "^8.9.0"
+    }
 }
