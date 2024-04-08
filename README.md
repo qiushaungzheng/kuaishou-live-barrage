@@ -7,9 +7,6 @@
 
 ### 快手直播官网 - https://live.kuaishou.com/
 
-![image-20221019183527491](https://img.jarvan.cn//imgimage-20221019183527491.png)
-
-<img src="https://img.jarvan.cn//imgimage-20221019183651520.png" alt="image-20221019183651520"  />
 
 ## 食用方法
 
@@ -38,6 +35,8 @@ yarn start
 
 
 如果能帮得上你麻烦点个 ❤ star ❤ 再走吧，感谢
+
+## 获取ws链接会触发快手风控 暂时无解
 
 ## License
 
